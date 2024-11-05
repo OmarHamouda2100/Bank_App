@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+        <div class="movements" *ngFor="let movement of account()?.movements; let i = index ">
+            <div class="movements-row d-flex align-items-center">
+              <div
+                class="movements-type"
+                [ngClass]="movement > 0 ? 'movements-type-deposit' : 'movements-type-withdrawal'">
+                {{movement > 0 ? 'deposit' : 'widthdrawal'}}</div>
+                  <div class="movements-date">{{ formatDate()[i] }}</div>
+              <div class="movements-value" >{{ movement }}€</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+
+      <!-- OPERATION: TRANSFERS -->
+      <div class="operation operation-transfer mb-4">
+        <h2>Transfer money</h2>
+        <form class="form form--transfer" [formGroup]="transferForm">
+          <input
+            type="text"
+            class="form-input form-input-to"
+            formControlName="transferTo"/>
+
+          <input type="number"
+          class="form-input form-input-amount"
+          formControlName="amount"/>
+          <button class="form-btn form-btn-transfer" (click)="transferMoney()">&rarr;</button>
+          <label class="form-label">Transfer to</label>
+          <label class="form-label">Amount</label>
+        </form>
+      </div>
+
+      <!-- OPERATION: LOAN -->
+      <div class="operation operation-loan mb-4">
+        <h2>Request loan</h2>
+        <form class="form form-loan">
+          <input type="number" class="form-input form-input-loan-amount" name="loan" [(ngModel)]="amount" />
+          <button class="form-btn form-btn-loan" (click)="getLoan()">&rarr;</button>
+          <label class="form-label form-label-loan">Amount</label>
+        </form>
+      </div>
+
+      <!-- OPERATION: CLOSE -->
+      <div class="operation operation-close">
+        <h2>Close account</h2>
+        <form class="form form-close mb-4" [formGroup]="closeForm">
+          <input
+            type="text"
+            class="form-input form-input-user"
+            formControlName="confirmUser"/>
+
+          <input
+            type="password"
+            maxlength="6"
+            class="form-input form-input-pin"
+            formControlName="confirmPIN"
+          />
+          <button class="form-btn form-btn-close" (click)="closeAccount($event)">&rarr;</button>
+          <label class="form-label">Confirm user</label>
+          <label class="form-label">Confirm PIN</label>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
