@@ -1,0 +1,13 @@
+<app-header [account]="account()"></app-header>
+
+<main
+  class="app"
+  [ngStyle]="account() ? {'opacity' : '1'} : {'opacity' : '0'}">
+@if(account()) {
+    <app-balance></app-balance>
+
+    <app-movements [account]="account()"></app-movements>
+
+    <app-summary [account]="account" (timerEvent)="logout($event)"></app-summary>
+  }
+</main>

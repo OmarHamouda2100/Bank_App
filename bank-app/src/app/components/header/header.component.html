@@ -1,0 +1,21 @@
+<nav class="d-flex align-items-center justify-content-between px-2">
+  <p class="welcome">{{ welcomeMessage() }}</p>
+  <img src="./logo.png" alt="Logo" class="logo" />
+  <form class="d-flex" [formGroup]="form">
+    <input
+      type="text"
+      placeholder="user"
+      class="login-input  text-center me-1"
+      formControlName="user"
+    />
+
+    <input
+      type="text"
+      placeholder="PIN"
+      maxlength="4"
+      class="login-input text-center me-1"
+      formControlName="pin"
+    />
+    <button class="login-btn" (click)="onSubmit()">&rarr;</button>
+  </form>
+</nav>
